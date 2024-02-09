@@ -6,9 +6,20 @@ class gun:
         self.reload(live, blank)
 
     def reload(self, lives, blanks):
+        print("\tThe gun has been reloaded.")
         self.chamber = ["LIVE"] * lives + ["BLANK"] * blanks
         random.shuffle(self.chamber)
-        #print(self.chamber)
+
+    def check_chamber(self):
+        chamber_size = len(self.chamber)
+        number_of_lives = self.chamber.count("LIVE")
+        number_of_blanks = self.chamber.count("BLANK")
+
+        text = f'''
+        There are {chamber_size} rounds left.
+        {number_of_lives} lives. {number_of_blanks} blanks.
+        '''
+        print(text)
 
     def check_current_bullet(self):
         current = self.chamber.pop()
@@ -34,4 +45,8 @@ if __name__ == "__main__":
     print(test_gun.chamber)
     test_gun.add_bullet("LIVE")
     print(test_gun.chamber)
+    test_gun.add_bullet("LIVE")
+    print(test_gun.chamber)
+    test_gun.check_chamber()
+
     

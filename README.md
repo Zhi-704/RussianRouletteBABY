@@ -1,6 +1,6 @@
 # Russian Roulette Text-Based Game
 
-Inspired by Buckshot Roulette. Let's test our luck!
+Inspired by Buckshot Roulette. May the odds be in your favour.
 
 Requirements:
 
