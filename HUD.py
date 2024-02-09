@@ -1,4 +1,5 @@
 import time
+import os
 
 def introduction():
     text1 = '''
@@ -26,7 +27,38 @@ Use them as you please.
     print(text4)
     time.sleep(3.5)
     print("May the odds be in your favour.\n")
+    time.sleep(2)
+
+def gun_fire(player, bullet):
+    live_text = '''
+
+██████╗  █████╗ ███╗   ██╗ ██████╗ ██╗██╗
+██╔══██╗██╔══██╗████╗  ██║██╔════╝ ██║██║
+██████╔╝███████║██╔██╗ ██║██║  ███╗██║██║
+██╔══██╗██╔══██║██║╚██╗██║██║   ██║╚═╝╚═╝
+██████╔╝██║  ██║██║ ╚████║╚██████╔╝██╗██╗
+╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝╚═╝
+                                         
+'''
+    blank_text = '''
+click...
+'''
+
+    os.system('cls')
+    print(f"{player} takes aim....")
+    time.sleep(2)
+    os.system('cls')
+
+    if bullet == "BLANK":
+        print(blank_text)
+        time.sleep(1)
+        print("The round was a blank.")
+    if bullet == "LIVE":
+        print(live_text)
+        time.sleep(1)
+        print("The round was live.")
 
 
 if __name__ == "__main__":
-    introduction()
+    # introduction()
+    gun_fire("Squidward", "LIVE")
