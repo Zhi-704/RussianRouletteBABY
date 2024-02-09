@@ -1,5 +1,7 @@
 import inquirer
-
+import HUD
+from Gun import gun
+from Player import player
 
 if __name__ == "__main__":
     main_menu_questions = [
@@ -9,20 +11,22 @@ if __name__ == "__main__":
                 ),
     ]
 
+    
     item_menu_questions = [
         inquirer.List('item',
-                    message="Choose an item:",
+                    message="Which item are you using?",
                     choices=['Handcuff', 'Saw', 'Glasses'],
                 ),
     ]
 
     def handle_main_menu(answer):
         action = answer['action']
+
         if action == 'Use Item':
             item_answer = inquirer.prompt(item_menu_questions)
             print("You chose to use", item_answer['item'])
         else:
-            print("You chose to", action.lower())
+            print("You chose to " + action.lower() + ".")
 
     # Prompt for main menu
     main_answer = inquirer.prompt(main_menu_questions, raise_keyboard_interrupt=True)

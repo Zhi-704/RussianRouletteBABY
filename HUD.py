@@ -47,7 +47,10 @@ def fire_gun(player, bullet):
 '''
 
     os.system('cls')
-    print(f"\t{player} takes aim....")
+    if player == "You":
+        print(f"\t{player} take aim....")
+    else:    
+        print(f"\t{player} takes aim....")
     time.sleep(2)
     os.system('cls')
 
