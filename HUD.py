@@ -1,5 +1,8 @@
 import time
 import os
+import sys
+import inquirer
+
 
 def introduction():
     text1 = '''
@@ -18,16 +21,17 @@ def introduction():
         You will both be given items to maximise your chances of winning.
         Use them as you please.
     '''
-    print(text1)
-    time.sleep(3)
-    print(text2)
-    time.sleep(4.5)
-    print(text3)
-    time.sleep(4.5)
-    print(text4)
-    time.sleep(3)
-    print("\tMay the odds be in your favour.\n")
-    time.sleep(2)
+    os.system('cls')
+    character_timer(text1, 0.035)
+    # time.sleep(1)
+    character_timer(text2, 0.035)
+    # time.sleep(1)
+    character_timer(text3, 0.035)
+    # time.sleep(1)
+    character_timer(text4, 0.035)
+    # time.sleep(1)
+    character_timer("\n\tMay the odds be in your favour.\n", 0.1)
+    time.sleep(5)
     os.system('cls')
 
 
@@ -47,24 +51,48 @@ def fire_gun(player, bullet):
 '''
 
     os.system('cls')
-    if player == "You":
-        print(f"\t{player} take aim....")
-    else:    
-        print(f"\t{player} takes aim....")
+    if player.name == "You":
+        character_timer(f"\t{player.name} take aim....", 0.1)
+    else:
+        character_timer(f"\t{player.name} takes aim....", 0.1)
     time.sleep(2)
     os.system('cls')
 
     if bullet == "BLANK":
         print(blank_text)
         time.sleep(1)
-        print("\tThe round was a blank.")
+        character_timer("\tThe round was a blank.", 0.05)
         time.sleep(1.5)
     if bullet == "LIVE":
         print(live_text)
         time.sleep(1)
-        print("\tThe round was a live.")
+        character_timer("\tThe round was a live.", 0.05)
         time.sleep(1.5)
     os.system('cls')
+
+
+def game_over():
+    print("\tThe game is now over. Thank you for playing.")
+    time.sleep(5)
+
+
+def character_timer(the_string, timer):
+    for char in the_string:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(timer)
+
+
+main_menu_questions = [
+    inquirer.List('action', message="What do you want to do?",
+                  choices=['Aim at yourself', 'Aim at opponent']),
+]
+
+
+def main_menu():
+    main_answer = inquirer.prompt(
+        main_menu_questions, raise_keyboard_interrupt=True)
+    return main_answer['action']
 
 
 if __name__ == "__main__":
