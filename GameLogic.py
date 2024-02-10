@@ -11,7 +11,7 @@ def initiate_game():
     The_Gun = gun(2, 4)
     Game_Won = False
 
-    # HUD.introduction()
+    HUD.introduction()
     while not Game_Won:
         while True:
             os.system('cls')
@@ -44,6 +44,7 @@ def initiate_game():
             aiming = current_turn(Player_2)
             handle_firing(aiming, Player_2, Player_1, The_Gun)
             Game_Won = check_victory(Player_2, Player_1)
+
             if Game_Won:
                 break
 
