@@ -1,4 +1,3 @@
-import inquirer
 import HUD
 import os
 from Gun import gun
