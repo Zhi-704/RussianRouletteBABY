@@ -27,7 +27,7 @@ def initiate_game():
     The_Gun = gun(selected_chamber[0], selected_chamber[1])
     Game_Won = False
 
-    HUD.introduction()
+    # HUD.introduction()
     while not Game_Won:
         turn_items = []
         while True:
@@ -41,7 +41,7 @@ def initiate_game():
             if aiming == "Aim at opponent":
                 if Player_2.handcuffed:
                     character_timer(
-                        f"\n\t{Player_2.name} is handcuffed. They skip a turn")
+                        f"\n\t{Player_2.name} is handcuffed. They skip a turn.")
                     time.sleep(3)
                     Player_2.handcuffed = False
                     continue
@@ -64,7 +64,7 @@ def initiate_game():
             if aiming == "Aim at opponent":
                 if Player_1.handcuffed:
                     character_timer(
-                        "\n\tYou are handcuffed. Skip a turn")
+                        "\n\tYou are handcuffed. Skip a turn.")
                     time.sleep(3)
                     Player_1.handcuffed = False
                     continue
@@ -117,7 +117,10 @@ def current_turn(player1, player2, gun_in_use):
         character_timer("\tThe gun has been reloaded.", 0.06)
     while True:
         os.system('cls')
-        print_game_state(player1, player2, gun_in_use)
+        if player1.name == "You":
+            print_game_state(player1, player2, gun_in_use)
+        else:
+            character_timer(f"\n\t{player1.name} is thinking...", 0.1)
         current_move = player1.get_input()
         if current_move == "Aim at yourself" or current_move == "Aim at opponent":
             break
@@ -172,17 +175,17 @@ def play_item(item_in_use, player_using_item, victim, gun_in_use):
         turn_items.append(item_in_use)
         character_timer(
             "\n\tA barrel was attached to the gun. The next shot will be more potent.")
-        time.sleep(3)
+        time.sleep(2)
     elif item_in_use == 'Bullet':
         gun_in_use.add_bullet("LIVE")
         character_timer(
             f"\n\tA live bullet was added to the chamber. The chamber was shuffled.")
-        time.sleep(3)
+        time.sleep(2)
     elif item_in_use == 'Blank':
         gun_in_use.add_bullet("BLANK")
         character_timer(
             "\n\tA barrel was added to the chamber. The chamber was shuffled.")
-        time.sleep(3)
+        time.sleep(2)
 
 
 if __name__ == "__main__":
