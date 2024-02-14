@@ -1,4 +1,5 @@
 import HUD
+import time
 
 
 class player:
@@ -6,7 +7,8 @@ class player:
         self.name = name
         self.hearts = hearts
         self.handcuffed = False
-        self.items = []
+        self.items = ['Burger', 'Handcuffs', 'Monocle',
+                      'Pan', 'Barrel', 'Bullet', 'Blank']
 
     def check_status(self):
         text = f'''
@@ -26,6 +28,15 @@ class player:
         main_choice = HUD.main_menu()
         print("You chose to " + main_choice.lower() + ".")
         return main_choice
+
+    def handle_items(self):
+        if len(self.items) == 0:
+            print('\nYou have no items!')
+            time.sleep(1.5)
+            return 'Go Back'
+        else:
+            item = HUD.item_menu(self)
+            return item
 
 
 if __name__ == "__main__":

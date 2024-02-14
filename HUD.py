@@ -61,12 +61,12 @@ def fire_gun(player, bullet):
     if bullet == "BLANK":
         print(blank_text)
         time.sleep(1)
-        character_timer("\tThe round was a blank.", 0.05)
+        character_timer("\tThe round was a blank.")
         time.sleep(1.5)
     if bullet == "LIVE":
         print(live_text)
         time.sleep(1)
-        character_timer("\tThe round was a live.", 0.05)
+        character_timer("\tThe round was a live.")
         time.sleep(1.5)
     os.system('cls')
 
@@ -76,7 +76,7 @@ def game_over():
     time.sleep(5)
 
 
-def character_timer(the_string, timer):
+def character_timer(the_string, timer=0.05):
     for char in the_string:
         sys.stdout.write(char)
         sys.stdout.flush()
@@ -85,7 +85,7 @@ def character_timer(the_string, timer):
 
 main_menu_questions = [
     inquirer.List('action', message="What do you want to do?",
-                  choices=['Aim at yourself', 'Aim at opponent']),
+                  choices=['Aim at yourself', 'Aim at opponent', 'Use Item']),
 ]
 
 
@@ -93,6 +93,21 @@ def main_menu():
     main_answer = inquirer.prompt(
         main_menu_questions, raise_keyboard_interrupt=True)
     return main_answer['action']
+
+
+def item_menu(player):
+    player.items.append('Go Back')
+    item_menu_questions = [
+        inquirer.List('item',
+                      message="Which item are you using?",
+                      choices=player.items,
+                      ),
+    ]
+
+    item_answer = inquirer.prompt(
+        item_menu_questions, raise_keyboard_interrupt=True)
+    player.items.remove('Go Back')
+    return item_answer['item']
 
 
 if __name__ == "__main__":
