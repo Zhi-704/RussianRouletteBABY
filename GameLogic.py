@@ -29,7 +29,6 @@ def initiate_game():
 
     # HUD.introduction()
     while not Game_Won:
-        turn_items = []
         while True:
 
             aiming = current_turn(Player_1, Player_2, The_Gun)
@@ -52,7 +51,6 @@ def initiate_game():
         if Game_Won:
             break
 
-        turn_items = []
         while True:
 
             aiming = current_turn(Player_2, Player_1, The_Gun)
@@ -94,9 +92,7 @@ def check_victory(player1, player2):
 def handle_firing(who_was_shot, the_shooter, the_victim, the_gun):
     fired_bullet = the_gun.fire()
     HUD.fire_gun(the_shooter, fired_bullet)
-    if fired_bullet == "BLANK":
-        return
-    elif fired_bullet == "LIVE":
+    if fired_bullet == "LIVE":
         if who_was_shot == "Aim at yourself":
             if 'Barrel' in turn_items:
                 the_shooter.take_damage(2)
@@ -107,7 +103,9 @@ def handle_firing(who_was_shot, the_shooter, the_victim, the_gun):
                 the_victim.take_damage(2)
             else:
                 the_victim.take_damage(1)
-        return
+    if 'Barrel' in turn_items:
+        turn_items.remove('Barrel')
+    return
 
 
 def current_turn(player1, player2, gun_in_use):
@@ -169,7 +167,7 @@ def play_item(item_in_use, player_using_item, victim, gun_in_use):
         if discard == "LIVE":
             character_timer("\n\tThe pan was shot through.")
         elif discard == "BLANK":
-            character_timer("\n\tThe pan was remained unscathed.")
+            character_timer("\n\tThe pan remained unscathed.")
         time.sleep(3)
     elif item_in_use == 'Barrel':
         turn_items.append(item_in_use)
