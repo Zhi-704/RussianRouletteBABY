@@ -72,8 +72,8 @@ def fire_gun(player, bullet):
 
 
 def game_over():
-    print("\n\tThe game is now over. I hope you enjoyed it :)")
-    time.sleep(5)
+    character_timer("\n\tThe game is now over. I hope you enjoyed it :)")
+    time.sleep(3.5)
 
 
 def character_timer(the_string, timer=0.05):

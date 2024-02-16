@@ -13,7 +13,7 @@ all_items = ['Burger', 'Handcuffs', 'Monocle',
 # Handcuffs - Opponent Skips a Go
 # Monocle - Checks Current Round
 # Pan - Fires a Round Without Shooting Anyone
-# Barrel - Double Damage
+# Barrel - Triple Damage
 # Bullet - Add Live Round
 # Blank - Add Blank Round
 
@@ -22,8 +22,8 @@ turn_items = []
 
 
 def initiate_game():
-    Player_1 = player("You", 10, all_items)
-    Player_2 = opponent("Squidward", 10, all_items)
+    Player_1 = player("You", 8, all_items)
+    Player_2 = opponent("Squidward", 8, all_items)
     selected_chamber = random.choice(chamber_configurations)
     The_Gun = gun(selected_chamber[0], selected_chamber[1])
     Game_Won = False
@@ -57,7 +57,7 @@ def initiate_game():
                 if Player_2.handcuffed:
                     character_timer(
                         f"\n\t{Player_2.name} is handcuffed. They skip a turn.")
-                    time.sleep(3)
+                    time.sleep(2)
                     Player_2.handcuffed = False
                     continue
                 else:
@@ -79,7 +79,7 @@ def initiate_game():
                 if Player_1.handcuffed:
                     character_timer(
                         "\n\tYou are handcuffed. Skip a turn.")
-                    time.sleep(3)
+                    time.sleep(2)
                     Player_1.handcuffed = False
                     continue
                 else:
@@ -96,7 +96,7 @@ def print_game_state(player1, player2, loaded_gun):
 
 def check_victory(player1, player2):
     if player1.hearts <= 0:
-        character_timer(f"\t{player2.name} has won!")
+        character_timer(f"\t{player2.name} have won!")
         return True
     elif player2.hearts <= 0:
         character_timer(f"\t{player1.name} have won!")
@@ -111,12 +111,12 @@ def handle_firing(who_was_shot, the_shooter, the_victim, the_gun):
     if fired_bullet == "LIVE":
         if who_was_shot == "Aim at yourself":
             if 'Barrel' in turn_items:
-                the_shooter.take_damage(2)
+                the_shooter.take_damage(3)
             else:
                 the_shooter.take_damage(1)
         elif who_was_shot == "Aim at opponent":
             if 'Barrel' in turn_items:
-                the_victim.take_damage(2)
+                the_victim.take_damage(3)
             else:
                 the_victim.take_damage(1)
     if 'Barrel' in turn_items:
@@ -137,7 +137,7 @@ def current_turn(player1, player2, gun_in_use):
             current_move = player1.get_input()
         else:
             print_game_state(player2, player1, gun_in_use)
-            character_timer(f"\n\t{player1.name} is thinking...", 0.07)
+            character_timer(f"\n\t{player1.name} is thinking...")
             time.sleep(1)
             current_move = player1.get_input(gun_in_use.chamber)
         if current_move == "Aim at yourself" or current_move == "Aim at opponent":

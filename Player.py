@@ -31,7 +31,6 @@ class player:
 
     def get_input(self):
         main_choice = HUD.main_menu()
-        print("You chose to " + main_choice.lower() + ".")
         return main_choice
 
     def handle_items(self):
