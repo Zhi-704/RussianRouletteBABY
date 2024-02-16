@@ -1,14 +1,19 @@
 import HUD
 import time
+import random
 
 
 class player:
-    def __init__(self, name, hearts):
+    def __init__(self, name, hearts, all_items):
         self.name = name
         self.hearts = hearts
         self.handcuffed = False
-        self.items = ['Burger', 'Handcuffs', 'Monocle',
-                      'Pan', 'Barrel', 'Bullet', 'Blank']
+        self.items = []
+
+        self.items.append(random.choice(all_items))
+        self.items.append(random.choice(all_items))
+        self.items.append(random.choice(all_items))
+        self.items.append(random.choice(all_items))
 
     def check_status(self):
         text = f'''

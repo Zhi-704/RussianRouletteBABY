@@ -31,7 +31,7 @@ def introduction():
     character_timer(text4, 0.035)
     # time.sleep(1)
     character_timer("\n\tMay the odds be in your favour.\n", 0.1)
-    time.sleep(5)
+    time.sleep(3.5)
     os.system('cls')
 
 
@@ -52,9 +52,9 @@ def fire_gun(player, bullet):
 
     os.system('cls')
     if player.name == "You":
-        character_timer(f"\t{player.name} take aim....", 0.1)
+        character_timer(f"\t{player.name} take aim....", 0.08)
     else:
-        character_timer(f"\t{player.name} takes aim....", 0.1)
+        character_timer(f"\t{player.name} takes aim....", 0.08)
     time.sleep(2)
     os.system('cls')
 
@@ -72,7 +72,7 @@ def fire_gun(player, bullet):
 
 
 def game_over():
-    print("\tThe game is now over. Thank you for playing.")
+    print("\n\tThe game is now over. I hope you enjoyed it :)")
     time.sleep(5)
 
 

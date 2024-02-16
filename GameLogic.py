@@ -3,6 +3,7 @@ from HUD import character_timer
 import os
 from Gun import gun
 from Player import player
+from Opponent import opponent
 import random
 import time
 
@@ -21,13 +22,13 @@ turn_items = []
 
 
 def initiate_game():
-    Player_1 = player("You", 10)
-    Player_2 = player("Squidward", 10)
+    Player_1 = player("You", 10, all_items)
+    Player_2 = opponent("Squidward", 10, all_items)
     selected_chamber = random.choice(chamber_configurations)
     The_Gun = gun(selected_chamber[0], selected_chamber[1])
     Game_Won = False
 
-    # HUD.introduction()
+    HUD.introduction()
     while not Game_Won:
         while True:
 
@@ -113,13 +114,17 @@ def current_turn(player1, player2, gun_in_use):
         selected_chamber = random.choice(chamber_configurations)
         gun_in_use.reload(selected_chamber[0], selected_chamber[1])
         character_timer("\tThe gun has been reloaded.", 0.06)
+        time.sleep(0.8)
     while True:
         os.system('cls')
         if player1.name == "You":
             print_game_state(player1, player2, gun_in_use)
+            current_move = player1.get_input()
         else:
+            print_game_state(player2, player1, gun_in_use)
             character_timer(f"\n\t{player1.name} is thinking...", 0.1)
-        current_move = player1.get_input()
+            time.sleep(1)
+            current_move = player1.get_input(gun_in_use.chamber)
         if current_move == "Aim at yourself" or current_move == "Aim at opponent":
             break
         if current_move == 'Use Item':
@@ -182,7 +187,7 @@ def play_item(item_in_use, player_using_item, victim, gun_in_use):
     elif item_in_use == 'Blank':
         gun_in_use.add_bullet("BLANK")
         character_timer(
-            "\n\tA barrel was added to the chamber. The chamber was shuffled.")
+            "\n\tA blank bullet was added to the chamber. The chamber was shuffled.")
         time.sleep(2)
 
 
