@@ -1,4 +1,5 @@
 import random
+from HUD import character_timer
 
 
 class gun:
@@ -10,16 +11,20 @@ class gun:
         self.chamber = ["LIVE"] * lives + ["BLANK"] * blanks
         random.shuffle(self.chamber)
 
-    def check_chamber(self):
+    def check_chamber(self, first):
         chamber_size = len(self.chamber)
         number_of_lives = self.chamber.count("LIVE")
         number_of_blanks = self.chamber.count("BLANK")
 
         text = f'''
         There are {chamber_size} rounds left.
-        {number_of_lives} lives. {number_of_blanks} blanks.
         '''
-        print(text)
+        text2 = f'''{number_of_lives} lives. {number_of_blanks} blanks.'''
+        if first:
+            character_timer(text)
+            character_timer(text2)
+        else:
+            print(text)
 
     def check_current_bullet(self):
         current = self.chamber.pop()

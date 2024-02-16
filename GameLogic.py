@@ -29,13 +29,16 @@ def initiate_game():
     Game_Won = False
     round_counter = 1
 
-    HUD.introduction()
+    # HUD.introduction()
+    The_Gun.check_chamber(True)
+    time.sleep(3)
     while not Game_Won:
         if (round_counter % 3) == 0:
             character_timer("\n\tItems have been redistributed.")
             time.sleep(1)
             Player_1.items = []
             Player_2.items = []
+
             Player_1.items.append(random.choice(all_items))
             Player_1.items.append(random.choice(all_items))
             Player_1.items.append(random.choice(all_items))
@@ -91,7 +94,7 @@ def initiate_game():
 def print_game_state(player1, player2, loaded_gun):
     player1.check_status()
     player2.check_status()
-    loaded_gun.check_chamber()
+    loaded_gun.check_chamber(False)
 
 
 def check_victory(player1, player2):
@@ -99,7 +102,7 @@ def check_victory(player1, player2):
         character_timer(f"\t{player2.name} have won!")
         return True
     elif player2.hearts <= 0:
-        character_timer(f"\t{player1.name} have won!")
+        character_timer(f"\t{player1.name} has won!")
         return True
     else:
         return False
@@ -125,13 +128,14 @@ def handle_firing(who_was_shot, the_shooter, the_victim, the_gun):
 
 
 def current_turn(player1, player2, gun_in_use):
-    if len(gun_in_use.chamber) <= 0:
-        selected_chamber = random.choice(chamber_configurations)
-        gun_in_use.reload(selected_chamber[0], selected_chamber[1])
-        character_timer("\n\tThe gun has been reloaded.", 0.06)
-        time.sleep(0.8)
     while True:
-        os.system('cls')
+        if len(gun_in_use.chamber) <= 0:
+            selected_chamber = random.choice(chamber_configurations)
+            gun_in_use.reload(selected_chamber[0], selected_chamber[1])
+            character_timer("\n\tThe gun has been reloaded.", 0.06)
+            gun_in_use.check_chamber(True)
+            time.sleep(3)
+            os.system('cls')
         if player1.name == "You":
             print_game_state(player1, player2, gun_in_use)
             current_move = player1.get_input()
@@ -154,14 +158,6 @@ def current_turn(player1, player2, gun_in_use):
     return current_move
 
 
-# Burger - Adds 1 Heart
-# Handcuffs - Opponent Skips a Go
-# Monocle - Checks Current Round
-# Pan - Fires a Round Without Shooting Anyone
-# Barrel - Double Damage
-# Bullet - Add Live Round
-# Blank - Add Blank Round
-
 def play_item(item_in_use, player_using_item, victim, gun_in_use):
     if item_in_use == 'Burger':
         character_timer(
@@ -179,7 +175,7 @@ def play_item(item_in_use, player_using_item, victim, gun_in_use):
             character_timer(
                 "\n\tYou peer into the gun with a monocle...")
             character_timer(
-                f"\n\tThe current bullet is a {current_bullet}")
+                f"\n\tThe current bullet is a {current_bullet}.")
             time.sleep(2)
     elif item_in_use == 'Pan':
         discard = gun_in_use.fire()
