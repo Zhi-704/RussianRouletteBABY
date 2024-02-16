@@ -17,3 +17,14 @@ To run the game:
 4. Enjoy!
 
 To navigate the menu, only the enter and arrow keys are needed.
+
+### Item Rules
+
+Each item has an effect:
+* Burger - Adds 1 Heart.
+* Handcuffs - Opponent skips a turn.
+* Monocle - Checks current round in the gun.
+* Pan - Fires a round without shooting anyone.
+* Barrel - Triple damage on the next round.
+* Bullet - Add live round and shuffle the chamber.
+* Blank - Add blank round and shuffle the chamber.
