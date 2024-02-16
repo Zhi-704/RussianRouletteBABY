@@ -27,9 +27,24 @@ def initiate_game():
     selected_chamber = random.choice(chamber_configurations)
     The_Gun = gun(selected_chamber[0], selected_chamber[1])
     Game_Won = False
+    round_counter = 1
 
     HUD.introduction()
     while not Game_Won:
+        if (round_counter % 3) == 0:
+            character_timer("\n\tItems have been redistributed.")
+            time.sleep(1)
+            Player_1.items = []
+            Player_2.items = []
+            Player_1.items.append(random.choice(all_items))
+            Player_1.items.append(random.choice(all_items))
+            Player_1.items.append(random.choice(all_items))
+            Player_1.items.append(random.choice(all_items))
+
+            Player_2.items.append(random.choice(all_items))
+            Player_2.items.append(random.choice(all_items))
+            Player_2.items.append(random.choice(all_items))
+            Player_2.items.append(random.choice(all_items))
         while True:
 
             aiming = current_turn(Player_1, Player_2, The_Gun)
@@ -69,7 +84,7 @@ def initiate_game():
                     continue
                 else:
                     break
-
+        round_counter += 1
     HUD.game_over()
 
 
@@ -122,7 +137,7 @@ def current_turn(player1, player2, gun_in_use):
             current_move = player1.get_input()
         else:
             print_game_state(player2, player1, gun_in_use)
-            character_timer(f"\n\t{player1.name} is thinking...", 0.1)
+            character_timer(f"\n\t{player1.name} is thinking...", 0.07)
             time.sleep(1)
             current_move = player1.get_input(gun_in_use.chamber)
         if current_move == "Aim at yourself" or current_move == "Aim at opponent":

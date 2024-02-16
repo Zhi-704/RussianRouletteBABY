@@ -29,10 +29,11 @@ class opponent(player):
             main_choice = "Use Item"
 
         if main_choice == "Aim at yourself":
-            character_timer(f"\n\t{self.name} chose to aim at themselves.")
+            character_timer(
+                f"\n\t{self.name} chose to aim at themselves.", 0.04)
         else:
             character_timer(f"\n\t{self.name} chose to " +
-                            main_choice.lower() + ".")
+                            main_choice.lower() + ".", 0.04)
         time.sleep(1.5)
         return main_choice
 
@@ -43,6 +44,6 @@ class opponent(player):
             return 'Go Back'
         else:
             item = random.choice(self.items)
-            character_timer(f'\n\t{self.name} uses the {item}.')
+            character_timer(f'\n\t{self.name} uses the {item}.', 0.04)
             time.sleep(1.5)
             return item
