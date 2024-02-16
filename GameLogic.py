@@ -17,7 +17,8 @@ all_items = ['Burger', 'Handcuffs', 'Monocle',
 # Bullet - Add Live Round
 # Blank - Add Blank Round
 
-chamber_configurations = [(2, 3), (4, 2), (5, 2), (5, 3), (2, 2), (4, 3)]
+chamber_configurations = [(2, 3), (4, 2), (5, 2),
+                          (5, 3), (2, 2), (4, 3), (1, 1)]
 turn_items = []
 
 
@@ -32,6 +33,7 @@ def initiate_game():
     # HUD.introduction()
     The_Gun.check_chamber(True)
     time.sleep(3)
+    os.system('cls')
     while not Game_Won:
         if (round_counter % 3) == 0:
             character_timer("\n\tItems have been redistributed.")
@@ -62,6 +64,7 @@ def initiate_game():
                         f"\n\t{Player_2.name} is handcuffed. They skip a turn.")
                     time.sleep(2)
                     Player_2.handcuffed = False
+                    os.system('cls')
                     continue
                 else:
                     break
@@ -84,6 +87,7 @@ def initiate_game():
                         "\n\tYou are handcuffed. Skip a turn.")
                     time.sleep(2)
                     Player_1.handcuffed = False
+                    os.system('cls')
                     continue
                 else:
                     break
