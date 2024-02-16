@@ -1,6 +1,6 @@
 # Russian Roulette Text-Based Game
 
-Inspired by Buckshot Roulette. May the odds be in your favour.
+Inspired by Buckshot Roulette by Mike Klubnika. May the odds be in your favour.
 
 ## Requirements
 
