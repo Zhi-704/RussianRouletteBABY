@@ -17,7 +17,7 @@ all_items = ['Burger', 'Handcuffs', 'Monocle',
 # Bullet - Add Live Round
 # Blank - Add Blank Round
 
-chamber_configurations = [(2, 4), (4, 2), (6, 2), (1, 3), (2, 2), (4, 3)]
+chamber_configurations = [(2, 3), (4, 2), (5, 2), (5, 3), (2, 2), (4, 3)]
 turn_items = []
 
 
@@ -128,7 +128,7 @@ def current_turn(player1, player2, gun_in_use):
     if len(gun_in_use.chamber) <= 0:
         selected_chamber = random.choice(chamber_configurations)
         gun_in_use.reload(selected_chamber[0], selected_chamber[1])
-        character_timer("\tThe gun has been reloaded.", 0.06)
+        character_timer("\n\tThe gun has been reloaded.", 0.06)
         time.sleep(0.8)
     while True:
         os.system('cls')
