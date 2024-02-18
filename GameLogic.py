@@ -205,6 +205,8 @@ def play_item(item_in_use, player_using_item, victim, gun_in_use):
             "\n\tA blank bullet was added to the chamber. The chamber was shuffled.")
         time.sleep(2)
 
+    os.system('cls')
+
 
 if __name__ == "__main__":
     initiate_game()
