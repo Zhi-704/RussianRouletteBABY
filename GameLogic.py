@@ -30,7 +30,7 @@ def initiate_game():
     Game_Won = False
     round_counter = 1
 
-    # HUD.introduction()
+    HUD.introduction()
     The_Gun.check_chamber(True)
     time.sleep(3)
     os.system('cls')
