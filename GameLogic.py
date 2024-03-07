@@ -38,6 +38,7 @@ def initiate_game():
         if (round_counter % 3) == 0:
             character_timer("\n\tItems have been redistributed.")
             time.sleep(1)
+            os.system('cls')
             Player_1.items = []
             Player_2.items = []
 
@@ -153,6 +154,7 @@ def current_turn(player1, player2, gun_in_use):
         if current_move == 'Use Item':
             current_item = player1.handle_items()
             if current_item == 'Go Back':
+                os.system('cls')
                 continue
             else:
                 player1.items.remove(current_item)
@@ -174,13 +176,21 @@ def play_item(item_in_use, player_using_item, victim, gun_in_use):
         victim.handcuffed = True
         time.sleep(1.5)
     elif item_in_use == 'Monocle':
+        current_bullet = gun_in_use.check_current_bullet()
         if player_using_item.name == 'You':
-            current_bullet = gun_in_use.check_current_bullet()
             character_timer(
                 "\n\tYou peer into the gun with a monocle...")
             character_timer(
                 f"\n\tThe current bullet is a {current_bullet}.")
             time.sleep(2)
+        else:
+            character_timer(
+                f"\n\t{player_using_item.name} peers into the gun with a monocle")
+            if current_bullet == "LIVE":
+                player_using_item.checked_live = True
+            else:
+                player_using_item.checked_blank = True
+            time.sleep(0.5)
     elif item_in_use == 'Pan':
         discard = gun_in_use.fire()
         character_timer("\n\tThe gun was fired at the pan...")

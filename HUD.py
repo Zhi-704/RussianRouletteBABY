@@ -8,29 +8,19 @@ def introduction():
     text1 = '''
         Welcome to the recreation of Russian Roulette. This particular version
         is inspired by the game \"Buckshot Roulette\" by Mike Klubnika. 
-    '''
-    text2 = '''
+
         You will play against an opponent, taking turns to shoot each other.
         The gun is loaded with both live and blank bullets.
-    '''
-    text3 = '''
+
         On your turn, you can choose to shoot at your opponent or yourself. 
         If you shoot yourself, you get an extra turn, regardless of the bullet.
-    '''
-    text4 = '''
+
         You will both be given items to maximise your chances of winning.
         Use them as you please.
     '''
     os.system('cls')
-    character_timer(text1, 0.035)
-    # time.sleep(1)
-    character_timer(text2, 0.035)
-    # time.sleep(1)
-    character_timer(text3, 0.035)
-    # time.sleep(1)
-    character_timer(text4, 0.035)
-    # time.sleep(1)
-    character_timer("\n\tMay the odds be in your favour.\n", 0.1)
+    character_timer(text1, 0.025)
+    character_timer("\n\tMay the odds be in your favour.\n", 0.08)
     time.sleep(3.5)
     os.system('cls')
 
@@ -76,7 +66,7 @@ def game_over():
     time.sleep(3.5)
 
 
-def character_timer(the_string, timer=0.05):
+def character_timer(the_string, timer=0.0375):
     for char in the_string:
         sys.stdout.write(char)
         sys.stdout.flush()

@@ -1,16 +1,28 @@
 from Player import player
 import time
-import sys
 import random
 from HUD import character_timer
 
 
 class opponent(player):
 
+    def __init__(self, name, hearts, all_items):
+        super().__init__(name, hearts, all_items)
+        self.checked_live = False
+        self.checked_blank = False
+
     def get_input(self, gun_chamber):
-        number_of_lives = gun_chamber.count("LIVE")
+        # motivate opponent to shoot at player more
+        number_of_lives = gun_chamber.count("LIVE") * 2
         number_of_blanks = gun_chamber.count("BLANK")
         item_factor = len(self.items)
+        # if opponent has used the monocle item, push it to act on the shot
+        if self.checked_live:
+            number_of_lives *= 99
+            self.checked_live = False
+        if self.checked_blank:
+            number_of_blanks += 99
+            self.checked_blank = False
         total = number_of_lives + number_of_blanks + item_factor
 
         live_weight = number_of_lives / total
